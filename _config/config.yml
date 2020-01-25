@@ -1,0 +1,11 @@
+---
+after: databaseconnectors
+---
+SilverStripe\Core\Injector\Injector:
+  ElliotSawyer\SSLMySQLDatabase\SSLMySQLDatabase:
+    properties:
+      connector: '%$SSL_MySQLiConnector'
+      schemaManager: '%$MySQLSchemaManager'
+      queryBuilder: '%$MySQLQueryBuilder'
+  SSL_MySQLiConnector:
+    class: 'ElliotSawyer\SSLMySQLDatabase\SSL_MySQLiConnector'

@@ -1,0 +1,26 @@
+{
+    "name": "elliotsawyer/silverstripe-mysql-ssl",
+    "type": "silverstripe-vendormodule",
+    "description": "Restores support for SSL MySQL connections in Silverstripe 4",
+    "homepage": "http://silverstripe.org",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "silverstripe",
+        "database",
+        "mysql",
+        "ssl"
+    ],
+    "authors": [
+        {
+            "name": "elliot sawyer"
+        }
+    ],
+    "require": {
+        "silverstripe/framework": "^4"
+    },
+    "suggest": {
+        "silverstripe/cms": "Allows you to easily edit file permissions in the CMS",
+        "silverstripe/environmentcheck": "Checks that SSL connection is successful"
+    },
+    "extra": []
+}
