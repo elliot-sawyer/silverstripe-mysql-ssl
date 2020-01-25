@@ -5,6 +5,10 @@ Why does this exist?
 --------------------
 Silverstripe 4 does not allow MySQL connections over SSL. The feature was removed during the early betas for unknown reasons and has not yet been restored. [An issue has been raised](https://github.com/silverstripe/silverstripe-framework/issues/8871) but remains unfixed. This module adds that support back in.
 
+Installation
+------------
+`composer require elliotsawyer/silverstripe-mysql-ssl`
+
 Configuration
 -------------
 Set the following variables in your .env
@@ -59,6 +63,10 @@ If you have the [environmentcheck](https://github.com/silverstripe/silverstripe-
 Contributing
 ------------
 Contributions are more than welcome! Please raise some issues or create pull requests on the Github repo.
+
+Acknowledgments
+------------
+Thanks to [maxime-rainville](https://github.com/maxime-rainville) and [obj63mc](https://github.com/obj63mc) for the original sample code that this module was built from.
 
 Support
 --------
