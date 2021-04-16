@@ -83,6 +83,7 @@ SilverStripe\ORM\Connect\MySQLiConnector:
   ssl_cipher_default: null
 ```
 The default cipher used by the MySQLiConnector class will not work with Azure. If you see an error `Abort trap: 6`, this is the most likely reason.
+
 4. You're almost there! If you attempt to run a /dev/build now, you may see a message "Unknown database '<your_database_name>'". The good news is that Silverstripe has connected to your database over SSL. The other (bad?) news is that your database user provided to you by Azure may not have permissions to create a database, so you will be unable to create your specified database automatically. If this happens, you will need to log into Azure through some other means, such as the MySQL client, Sequel Pro, or MySQL Workbench to create the database manually:
 ```sql
 CREATE DATABASE your_database_name
