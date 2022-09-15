@@ -60,6 +60,36 @@ You can verify that the secure connection is working by running the following SQ
 
 If you have the [environmentcheck](https://github.com/silverstripe/silverstripe-environmentcheck) module installed, this is checked automatically and fails if an unsecured connection is used.
 
+Microsoft Azure for MySQL users
+-------------------------------
+This module can be used to connect with Azure over a secure SSL connection. For security reasons, Azure enforces an SSL connection by default and strongly discourages you from turning it off. 
+
+0. Before you begin: make sure your firewall settings are not blocking the connection from occurring. These rules can be configured in Azure
+1. First, you must obtain a particular CA cert per the [Azure documentation](https://docs.microsoft.com/en-us/azure/mysql/howto-configure-ssl): https://www.digicert.com/CACerts/BaltimoreCyberTrustRoot.crt.pem
+2. Save this certificate to a location accessible to your webserver, such as `/path/to/your/website/.well-known/BaltimoreCyberTrustRoot.crt.pem`
+3. Add the following information to your .env file or environment variables
+```ini
+SS_DATABASE_USERNAME="YourAzureDBUsername"
+SS_DATABASE_PASSWORD="YourAzureDBPassword"
+SS_DATABASE_SERVER="YourAzureDBHostname.mysql.database.azure.com"
+SS_DATABASE_SSL_KEY=NULL
+SS_DATABASE_SSL_CERT=NULL
+SS_DATABASE_SSL_CIPHER=NULL
+SS_DATABASE_SSL_CA="/path/to/your/website/.well-known/BaltimoreCyberTrustRoot.crt.pem"
+```
+The module will convert the exact string "NULL" to a PHP `null` value for these specific database variables. Alternatively, instead of `SS_DATABASE_SSL_CIPHER`, you may define the following to a config.yml file:
+```yml
+SilverStripe\ORM\Connect\MySQLiConnector:
+  ssl_cipher_default: null
+```
+The default cipher used by the MySQLiConnector class will not work with Azure. If you see an error `Abort trap: 6`, this is the most likely reason.
+
+4. You're almost there! If you attempt to run a /dev/build now, you may see a message "Unknown database '<your_database_name>'". The good news is that Silverstripe has connected to your database over SSL. The other (bad?) news is that your database user provided to you by Azure may not have permissions to create a database, so you will be unable to create your specified database automatically. If this happens, you will need to log into Azure through some other means, such as the MySQL client, Sequel Pro, or MySQL Workbench to create the database manually:
+```sql
+CREATE DATABASE your_database_name
+```
+5. Run /dev/build again. If all goes well you should see CREATING DATABASE TABLES running slowly but successfully.
+
 Contributing
 ------------
 Contributions are more than welcome! Please raise some issues or create pull requests on the Github repo.
