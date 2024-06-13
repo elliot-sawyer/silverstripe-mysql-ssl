@@ -5,6 +5,8 @@ Why does this exist?
 --------------------
 Silverstripe 4 does not allow MySQL connections over SSL. The feature was removed during the early betas for unknown reasons and has not yet been restored. [An issue has been raised](https://github.com/silverstripe/silverstripe-framework/issues/8871) but remains unfixed. This module adds that support back in.
 
+**Update**: This module is no longer needed for Silverstripe 4.13 and Silverstripe 5, and the above issue has now been resolved. This module will remain online for historical needs, as the documention provides context for setup on Azure
+
 Installation
 ------------
 `composer require elliotsawyer/silverstripe-mysql-ssl`
